@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { states } from '@constants/states'
 import AppLayout from '@common/components/AppLayout'
-import { App } from 'antd'
+import { Typography } from 'antd'
+
+const { Title } = Typography
 
 const HomePage = () => {
   useEffect(() => {
@@ -67,7 +69,7 @@ const HomePage = () => {
   return (
     <AppLayout>
       <a href="employee-list.html">View Current Employees</a>
-      <h2>Create Employee</h2>
+      <Title level={2}>Create Employee</Title>
       <form action="#" id="create-employee">
         <label htmlFor="first-name">First Name</label>
         <input type="text" id="first-name" />
