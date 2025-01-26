@@ -13,7 +13,7 @@ const Error: React.FC = () => {
           subTitle="Sorry, the page you visited does not exist."
           extra={
             <Link to="/">
-              <Button type="primary">Back Home</Button>
+              <Button type="primary">Back to Create Employee</Button>
             </Link>
           }
         />

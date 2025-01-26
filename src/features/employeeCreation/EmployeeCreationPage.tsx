@@ -5,7 +5,7 @@ import { Typography } from 'antd'
 
 const { Title } = Typography
 
-const HomePage = () => {
+const EmployeeCreationPage = () => {
   useEffect(() => {
     const stateSelect = document.getElementById('state') as HTMLSelectElement
     states.forEach((state) => {
@@ -119,4 +119,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default EmployeeCreationPage
