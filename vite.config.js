@@ -16,6 +16,7 @@ export default defineConfig({
       '@features': path.resolve(__dirname, './src/features'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@redux': path.resolve(__dirname, './src/app/redux'),
+      '@constants': path.resolve(__dirname, './src/constants'),
       //'@services': path.resolve(__dirname, './src/services'),
       '@': path.resolve(__dirname, './src'),
     },

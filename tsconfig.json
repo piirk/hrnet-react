@@ -17,6 +17,7 @@
       "@features/*": ["src/features/*"],
       "@assets/*": ["src/assets/*"],
       "@redux/*": ["src/app/redux/*"],
+      "@constants/*": ["src/constants/*"],
       //"@services/*": ["src/services/*"],
       "@/*": ["src/*"]
     }
