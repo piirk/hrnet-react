@@ -1,4 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { fetchEmployees } from '@redux/actions/employeeActions'
 import { Employee } from '@common/models/Employee'
 
 interface EmployeeState {
@@ -12,40 +13,6 @@ const initialState: EmployeeState = {
   loading: false,
   error: undefined,
 }
-
-export const fetchEmployees = createAsyncThunk(
-  'employee/fetchEmployees',
-  async () => {
-    // mock data
-    const data: Employee[] = [
-      {
-        id: 1,
-        firstName: 'John',
-        lastName: 'Doe',
-        dateOfBirth: new Date('1990-01-01'),
-        startDate: new Date('2020-01-01'),
-        department: 'IT',
-        street: '123 Main St',
-        city: 'Springfield',
-        state: 'IL',
-        zipCode: '62701',
-      },
-      {
-        id: 2,
-        firstName: 'Jane',
-        lastName: 'Smith',
-        dateOfBirth: new Date('1995-01-01'),
-        startDate: new Date('2020-01-01'),
-        department: 'HR',
-        street: '123 Main St',
-        city: 'Springfield',
-        state: 'IL',
-        zipCode: '62701',
-      },
-    ]
-    return data
-  },
-)
 
 const employeeSlice = createSlice({
   name: 'employee',

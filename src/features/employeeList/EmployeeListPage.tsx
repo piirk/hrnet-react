@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AppLayout from '@common/components/AppLayout'
-import { fetchEmployees } from '@redux/slices/employeeSlice'
+import { fetchEmployees } from '@redux/actions/employeeActions'
 import { RootState, AppDispatch } from '@redux/store'
 import { Employee } from '@common/models/Employee'
 import { Typography } from 'antd'
