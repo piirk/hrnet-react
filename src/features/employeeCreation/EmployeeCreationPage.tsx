@@ -69,7 +69,7 @@ const EmployeeCreationPage = () => {
 
   return (
     <AppLayout>
-      <Link to="/list">View Current Employees</Link>
+      <Link to="employee/list">View Current Employees</Link>
       <Title level={2}>Create Employee</Title>
       <form action="#" id="create-employee">
         <label htmlFor="first-name">First Name</label>
