@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { states } from '@constants/states'
 import Layout from '@common/components/Layout'
 import { Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
 
 const EmployeeCreationPage = () => {
   useEffect(() => {
