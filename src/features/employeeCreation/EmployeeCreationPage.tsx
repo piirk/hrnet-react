@@ -8,14 +8,6 @@ const { Title } = Typography
 
 const EmployeeCreationPage = () => {
   useEffect(() => {
-    const stateSelect = document.getElementById('state') as HTMLSelectElement
-    states.forEach((state) => {
-      const option = document.createElement('option')
-      option.value = state.abbreviation
-      option.text = state.name
-      stateSelect.appendChild(option)
-    })
-
     const dateOfBirth = document.getElementById(
       'date-of-birth',
     ) as HTMLInputElement
@@ -94,7 +86,14 @@ const EmployeeCreationPage = () => {
           <input id="city" type="text" />
 
           <label htmlFor="state">State</label>
-          <select name="state" id="state"></select>
+          <select name="state" id="state">
+            <option value="">Select State</option>
+            {Object.entries(states).map(([abbreviation, name]) => (
+              <option key={abbreviation} value={abbreviation}>
+                {name}
+              </option>
+            ))}
+          </select>
 
           <label htmlFor="zip-code">Zip Code</label>
           <input id="zip-code" type="number" />
