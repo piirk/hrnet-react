@@ -49,7 +49,7 @@ const EmployeeListPage = () => {
   return (
     <AppLayout>
       <Title level={2}>Employees</Title>
-      <DataTable data={employees} columns={columns} />
+      <DataTable data={employees} columns={columns} useMUI={true} />
     </AppLayout>
   )
 }
