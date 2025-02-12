@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { states } from '@constants/states'
 import Layout from '@common/components/Layout'
 import {
@@ -14,11 +14,14 @@ import {
   Box,
   SelectChangeEvent,
 } from '@mui/material'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import dayjs from 'dayjs'
 
 const EmployeeCreationPage = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm()
 
@@ -77,32 +80,56 @@ const EmployeeCreationPage = () => {
         </FormControl>
 
         <FormControl fullWidth error={!!errors.dateOfBirth}>
-          <TextField
-            label="Date of Birth"
-            variant="outlined"
-            type="date"
-            fullWidth
-            {...register('dateOfBirth', {
-              required: 'Date of birth is required',
-            })}
-            error={!!errors.dateOfBirth}
-            helperText={errors.dateOfBirth?.message?.toString() || ''}
+          <Controller
+            name="dateOfBirth"
+            control={control}
+            rules={{ required: 'Date of birth is required' }}
+            render={({ field }) => (
+              <DatePicker
+                {...field}
+                label="Date of Birth"
+                format="DD/MM/YYYY"
+                value={field.value ? dayjs(field.value) : null}
+                onChange={(date) => field.onChange(date ? date.toDate() : null)}
+                slotProps={{
+                  textField: {
+                    variant: 'outlined',
+                    error: !!errors.dateOfBirth,
+                    fullWidth: true,
+                    helperText: errors.dateOfBirth?.message?.toString() || '',
+                  },
+                }}
+              />
+            )}
           />
         </FormControl>
 
         <FormControl fullWidth error={!!errors.startDate}>
-          <TextField
-            label="Start Date"
-            variant="outlined"
-            type="date"
-            fullWidth
-            {...register('startDate', { required: 'Start date is required' })}
-            error={!!errors.startDate}
-            helperText={errors.startDate?.message?.toString() || ''}
+          <Controller
+            name="startDate"
+            control={control}
+            rules={{ required: 'Start date is required' }}
+            render={({ field }) => (
+              <DatePicker
+                {...field}
+                label="Start Date"
+                format="DD/MM/YYYY"
+                value={field.value ? dayjs(field.value) : null}
+                onChange={(date) => field.onChange(date ? date.toDate() : null)}
+                slotProps={{
+                  textField: {
+                    variant: 'outlined',
+                    error: !!errors.startDate,
+                    fullWidth: true,
+                    helperText: errors.startDate?.message?.toString() || '',
+                  },
+                }}
+              />
+            )}
           />
         </FormControl>
 
-        <fieldset className="address">
+        <Box component="fieldset">
           <legend>Address</legend>
 
           <FormControl fullWidth error={!!errors.street}>
@@ -157,7 +184,7 @@ const EmployeeCreationPage = () => {
               helperText={errors.zipCode?.message?.toString() || ''}
             />
           </FormControl>
-        </fieldset>
+        </Box>
 
         <FormControl fullWidth>
           <InputLabel>Department</InputLabel>
