@@ -1,52 +1,38 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { states } from '@constants/states'
 import Layout from '@common/components/Layout'
-import { Typography } from '@mui/material'
+import {
+  Typography,
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  FormHelperText,
+  Box,
+  SelectChangeEvent,
+} from '@mui/material'
 
 const EmployeeCreationPage = () => {
-  useEffect(() => {
-    const dateOfBirth = document.getElementById(
-      'date-of-birth',
-    ) as HTMLInputElement
-    const startDate = document.getElementById('start-date') as HTMLInputElement
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
-    dateOfBirth.addEventListener('focus', () => {
-      dateOfBirth.type = 'date'
-    })
-    startDate.addEventListener('focus', () => {
-      startDate.type = 'date'
-    })
-  }, [])
+  const [state, setState] = useState('')
 
-  const saveEmployee = () => {
-    const firstName = document.getElementById('first-name') as HTMLInputElement
-    const lastName = document.getElementById('last-name') as HTMLInputElement
-    const dateOfBirth = document.getElementById(
-      'date-of-birth',
-    ) as HTMLInputElement
-    const startDate = document.getElementById('start-date') as HTMLInputElement
-    const department = document.getElementById(
-      'department',
-    ) as HTMLSelectElement
-    const street = document.getElementById('street') as HTMLInputElement
-    const city = document.getElementById('city') as HTMLInputElement
-    const state = document.getElementById('state') as HTMLSelectElement
-    const zipCode = document.getElementById('zip-code') as HTMLInputElement
+  const handleChange = (event: SelectChangeEvent) => {
+    setState(event.target.value as string)
+  }
 
+  const onSubmit = (data: any) => {
     const employees = JSON.parse(localStorage.getItem('employees') || '[]')
-    const employee = {
-      firstName: firstName.value,
-      lastName: lastName.value,
-      dateOfBirth: dateOfBirth.value,
-      startDate: startDate.value,
-      department: department.value,
-      street: street.value,
-      city: city.value,
-      state: state.value,
-      zipCode: zipCode.value,
-    }
-    employees.push(employee)
+    employees.push(data)
     localStorage.setItem('employees', JSON.stringify(employees))
+
     const confirmation = document.getElementById(
       'confirmation',
     ) as HTMLDivElement
@@ -61,55 +47,139 @@ const EmployeeCreationPage = () => {
       <Typography variant="h1" sx={{ fontSize: '3rem' }}>
         Create Employee
       </Typography>
-      <form action="#" id="create-employee">
-        <label htmlFor="first-name">First Name</label>
-        <input type="text" id="first-name" />
+      <Box
+        component="form"
+        sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+        autoComplete="off"
+      >
+        <FormControl fullWidth error={!!errors.firstName}>
+          <TextField
+            label="First Name"
+            variant="outlined"
+            fullWidth
+            {...register('firstName', { required: 'First name is required' })}
+            error={!!errors.firstName}
+            helperText={errors.firstName?.message?.toString() || ''}
+          />
+        </FormControl>
 
-        <label htmlFor="last-name">Last Name</label>
-        <input type="text" id="last-name" />
+        <FormControl fullWidth error={!!errors.lastName}>
+          <TextField
+            label="Last Name"
+            variant="outlined"
+            fullWidth
+            {...register('lastName', { required: 'Last name is required' })}
+            error={!!errors.lastName}
+            helperText={errors.lastName?.message?.toString() || ''}
+          />
+        </FormControl>
 
-        <label htmlFor="date-of-birth">Date of Birth</label>
-        <input id="date-of-birth" type="text" />
+        <FormControl fullWidth error={!!errors.dateOfBirth}>
+          <TextField
+            label="Date of Birth"
+            variant="outlined"
+            type="date"
+            fullWidth
+            {...register('dateOfBirth', {
+              required: 'Date of birth is required',
+            })}
+            error={!!errors.dateOfBirth}
+            helperText={errors.dateOfBirth?.message?.toString() || ''}
+          />
+        </FormControl>
 
-        <label htmlFor="start-date">Start Date</label>
-        <input id="start-date" type="text" />
+        <FormControl fullWidth error={!!errors.startDate}>
+          <TextField
+            label="Start Date"
+            variant="outlined"
+            type="date"
+            fullWidth
+            {...register('startDate', { required: 'Start date is required' })}
+            error={!!errors.startDate}
+            helperText={errors.startDate?.message?.toString() || ''}
+          />
+        </FormControl>
 
         <fieldset className="address">
           <legend>Address</legend>
 
-          <label htmlFor="street">Street</label>
-          <input id="street" type="text" />
+          <FormControl fullWidth error={!!errors.street}>
+            <TextField
+              label="Street"
+              variant="outlined"
+              fullWidth
+              {...register('street', { required: 'Street is required' })}
+              error={!!errors.street}
+              helperText={errors.street?.message?.toString() || ''}
+            />
+          </FormControl>
 
-          <label htmlFor="city">City</label>
-          <input id="city" type="text" />
+          <FormControl fullWidth error={!!errors.city}>
+            <TextField
+              label="City"
+              variant="outlined"
+              fullWidth
+              {...register('city', { required: 'City is required' })}
+              error={!!errors.city}
+              helperText={errors.city?.message?.toString() || ''}
+            />
+          </FormControl>
 
-          <label htmlFor="state">State</label>
-          <select name="state" id="state">
-            <option value="">Select State</option>
-            {Object.entries(states).map(([abbreviation, name]) => (
-              <option key={abbreviation} value={abbreviation}>
-                {name}
-              </option>
-            ))}
-          </select>
+          <FormControl fullWidth error={!!errors.state}>
+            <InputLabel>State</InputLabel>
+            <Select
+              {...register('state', { required: 'State is required' })}
+              label="State"
+              value={state}
+              onChange={handleChange}
+            >
+              {Object.entries(states).map(([abbreviation, name]) => (
+                <MenuItem key={abbreviation} value={abbreviation}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>
+              {errors.state?.message?.toString() || ''}
+            </FormHelperText>
+          </FormControl>
 
-          <label htmlFor="zip-code">Zip Code</label>
-          <input id="zip-code" type="number" />
+          <FormControl fullWidth error={!!errors.zipCode}>
+            <TextField
+              label="Zip Code"
+              variant="outlined"
+              type="number"
+              fullWidth
+              {...register('zipCode', { required: 'Zip code is required' })}
+              error={!!errors.zipCode}
+              helperText={errors.zipCode?.message?.toString() || ''}
+            />
+          </FormControl>
         </fieldset>
 
-        <label htmlFor="department">Department</label>
-        <select name="department" id="department">
-          <option>Sales</option>
-          <option>Marketing</option>
-          <option>Engineering</option>
-          <option>Human Resources</option>
-          <option>Legal</option>
-        </select>
-      </form>
+        <FormControl fullWidth>
+          <InputLabel>Department</InputLabel>
+          <Select {...register('department')} label="Department">
+            <MenuItem>Sales</MenuItem>
+            <MenuItem>Marketing</MenuItem>
+            <MenuItem>Engineering</MenuItem>
+            <MenuItem>Human Resources</MenuItem>
+            <MenuItem>Legal</MenuItem>
+          </Select>
+        </FormControl>
 
-      <button type="button" onClick={saveEmployee}>
-        Save
-      </button>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ mt: 2 }}
+        >
+          Save
+        </Button>
+      </Box>
+
       <div id="confirmation" className="modal">
         Employee Created!
       </div>
