@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { states } from '@constants/states'
-import AppLayout from '@common/components/AppLayout'
+import Layout from '@common/components/Layout'
 import { Typography } from 'antd'
 import { Link } from 'react-router-dom'
 
@@ -60,7 +60,7 @@ const EmployeeCreationPage = () => {
   }
 
   return (
-    <AppLayout>
+    <Layout>
       <Link to="/employee/list">View Current Employees</Link>
       <Title level={2}>Create Employee</Title>
       <form action="#" id="create-employee">
@@ -115,7 +115,7 @@ const EmployeeCreationPage = () => {
       <div id="confirmation" className="modal">
         Employee Created!
       </div>
-    </AppLayout>
+    </Layout>
   )
 }
 

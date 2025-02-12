@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Result } from 'antd'
 import { Link } from 'react-router-dom'
-import AppLayout from '@common/components/AppLayout'
+import Layout from '@common/components/Layout'
 
 const Error: React.FC = () => {
   return (
     <>
-      <AppLayout>
+      <Layout>
         <Result
           status="404"
           title="404"
@@ -17,7 +17,7 @@ const Error: React.FC = () => {
             </Link>
           }
         />
-      </AppLayout>
+      </Layout>
     </>
   )
 }

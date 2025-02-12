@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import AppLayout from '@common/components/AppLayout'
+import Layout from '@common/components/Layout'
 import { fetchEmployees } from '@redux/actions/employeeActions'
 import { RootState, AppDispatch } from '@redux/store'
 import { Employee } from '@common/models/Employee'
@@ -56,8 +56,8 @@ const EmployeeListPage = () => {
   }, [dispatch])
 
   return (
-    <AppLayout>
-      <Title level={2}>Employees</Title>
+    <Layout>
+      <Title level={2}>Current Employees</Title>
 
       {/* dev */}
       <button onClick={handleToggleMUI}>
@@ -70,7 +70,7 @@ const EmployeeListPage = () => {
         useMUI={useMUI}
         enableSearch={true}
       />
-    </AppLayout>
+    </Layout>
   )
 }
 
