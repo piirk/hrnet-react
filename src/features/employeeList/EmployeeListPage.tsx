@@ -6,6 +6,7 @@ import { RootState, AppDispatch } from '@redux/store'
 import { Employee } from '@common/models/Employee'
 import { Typography } from 'antd'
 import { DataTable } from 'react-datatable-library'
+import { states } from '@constants/states'
 
 const { Title } = Typography
 
@@ -19,16 +20,26 @@ const EmployeeListPage = () => {
     { title: 'First Name', dataIndex: 'firstName' },
     { title: 'Last Name', dataIndex: 'lastName' },
     {
-      title: 'Date of Birth',
-      dataIndex: 'dateOfBirth',
-      render: (date: string) => new Date(date).toLocaleDateString(),
-    },
-    {
       title: 'Start Date',
       dataIndex: 'startDate',
       render: (date: string) => new Date(date).toLocaleDateString(),
     },
     { title: 'Department', dataIndex: 'department' },
+    {
+      title: 'Date of Birth',
+      dataIndex: 'dateOfBirth',
+      render: (date: string) => new Date(date).toLocaleDateString(),
+    },
+    { title: 'Street', dataIndex: 'street' },
+    { title: 'City', dataIndex: 'city' },
+    {
+      title: 'State',
+      dataIndex: 'state',
+      render: (stateCode: string) => {
+        return states[stateCode] || stateCode
+      },
+    },
+    { title: 'Zip Code', dataIndex: 'zipCode' },
   ]
 
   useEffect(() => {
