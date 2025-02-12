@@ -23,18 +23,20 @@ const EmployeeListPage = () => {
   )
 
   const columns = [
-    { title: 'First Name', dataIndex: 'firstName' },
-    { title: 'Last Name', dataIndex: 'lastName' },
+    { title: 'First Name', dataIndex: 'firstName', sortable: true },
+    { title: 'Last Name', dataIndex: 'lastName', sortable: true },
     {
       title: 'Start Date',
       dataIndex: 'startDate',
       render: (date: string) => new Date(date).toLocaleDateString(),
+      sortable: true,
     },
-    { title: 'Department', dataIndex: 'department' },
+    { title: 'Department', dataIndex: 'department', sortable: true },
     {
       title: 'Date of Birth',
       dataIndex: 'dateOfBirth',
       render: (date: string) => new Date(date).toLocaleDateString(),
+      sortable: true,
     },
     { title: 'Street', dataIndex: 'street' },
     { title: 'City', dataIndex: 'city' },
@@ -44,6 +46,7 @@ const EmployeeListPage = () => {
       render: (stateCode: string) => {
         return states[stateCode] || stateCode
       },
+      sortable: true,
     },
     { title: 'Zip Code', dataIndex: 'zipCode' },
   ]
@@ -55,10 +58,18 @@ const EmployeeListPage = () => {
   return (
     <AppLayout>
       <Title level={2}>Employees</Title>
+
+      {/* dev */}
       <button onClick={handleToggleMUI}>
         {useMUI ? 'Switch to Non-MUI' : 'Switch to MUI'}
       </button>
-      <DataTable data={employees} columns={columns} useMUI={useMUI} />
+
+      <DataTable
+        data={employees}
+        columns={columns}
+        useMUI={useMUI}
+        enableSearch={true}
+      />
     </AppLayout>
   )
 }
