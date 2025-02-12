@@ -4,11 +4,9 @@ import Layout from '@common/components/Layout'
 import { fetchEmployees } from '@redux/actions/employeeActions'
 import { RootState, AppDispatch } from '@redux/store'
 import { Employee } from '@common/models/Employee'
-import { Typography } from 'antd'
+import { Typography } from '@mui/material'
 import { DataTable } from 'react-datatable-library'
 import { states } from '@constants/states'
-
-const { Title } = Typography
 
 const EmployeeListPage = () => {
   // dev
@@ -57,7 +55,9 @@ const EmployeeListPage = () => {
 
   return (
     <Layout>
-      <Title level={2}>Current Employees</Title>
+      <Typography variant="h1" sx={{ fontSize: '3rem' }}>
+        Current Employees
+      </Typography>
 
       {/* dev */}
       <button onClick={handleToggleMUI}>

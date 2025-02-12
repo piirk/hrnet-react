@@ -1,10 +1,8 @@
 import { useEffect } from 'react'
 import { states } from '@constants/states'
 import Layout from '@common/components/Layout'
-import { Typography } from 'antd'
+import { Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
-
-const { Title } = Typography
 
 const EmployeeCreationPage = () => {
   useEffect(() => {
@@ -61,8 +59,9 @@ const EmployeeCreationPage = () => {
 
   return (
     <Layout>
-      <Link to="/employee/list">View Current Employees</Link>
-      <Title level={2}>Create Employee</Title>
+      <Typography variant="h1" sx={{ fontSize: '3rem' }}>
+        Create Employee
+      </Typography>
       <form action="#" id="create-employee">
         <label htmlFor="first-name">First Name</label>
         <input type="text" id="first-name" />
