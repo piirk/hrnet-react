@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Layout } from 'antd'
-import AppHeader from './AppHeader'
+import Header from './Header'
 import AppFooter from './AppFooter'
 
 const { Content } = Layout
@@ -12,7 +12,7 @@ interface LayoutProps {
 const AppLayout = ({ children }: LayoutProps) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <AppHeader />
+      <Header />
       <Content>{children}</Content>
       <AppFooter />
     </Layout>
