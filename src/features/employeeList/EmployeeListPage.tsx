@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AppLayout from '@common/components/AppLayout'
 import { fetchEmployees } from '@redux/actions/employeeActions'
@@ -11,6 +11,12 @@ import { states } from '@constants/states'
 const { Title } = Typography
 
 const EmployeeListPage = () => {
+  // dev
+  const [useMUI, setUseMUI] = useState(true)
+  const handleToggleMUI = () => {
+    setUseMUI((prev) => !prev)
+  }
+
   const dispatch: AppDispatch = useDispatch()
   const employees: Employee[] = useSelector(
     (state: RootState) => state.employee.employees,
@@ -49,7 +55,10 @@ const EmployeeListPage = () => {
   return (
     <AppLayout>
       <Title level={2}>Employees</Title>
-      <DataTable data={employees} columns={columns} useMUI={true} />
+      <button onClick={handleToggleMUI}>
+        {useMUI ? 'Switch to Non-MUI' : 'Switch to MUI'}
+      </button>
+      <DataTable data={employees} columns={columns} useMUI={useMUI} />
     </AppLayout>
   )
 }
