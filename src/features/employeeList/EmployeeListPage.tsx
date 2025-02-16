@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Layout from '@common/components/Layout'
+import Layout from '@/components/Layout'
 import { fetchEmployees } from '@redux/actions/employeeActions'
 import { RootState, AppDispatch } from '@redux/store'
 import { Employee } from '@common/models/Employee'
