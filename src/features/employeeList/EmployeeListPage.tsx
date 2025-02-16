@@ -54,7 +54,11 @@ const EmployeeListPage = () => {
         data={employees}
         columns={columns}
         sx={{
-          container: { padding: '16px', borderRadius: '8px' },
+          container: {
+            padding: '16px',
+            borderRadius: '8px',
+            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+          },
           search: { marginBottom: '20px' },
           table: { border: '1px solid black' },
           header: { backgroundColor: 'lightblue', fontWeight: 'bold' },
