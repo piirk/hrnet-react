@@ -11,12 +11,13 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@common': path.resolve(__dirname, './src/common'),
-      '@components': path.resolve(__dirname, './src/common/components'),
-      '@features': path.resolve(__dirname, './src/features'),
       '@assets': path.resolve(__dirname, './src/assets'),
-      '@redux': path.resolve(__dirname, './src/app/redux'),
+      '@components': path.resolve(__dirname, './src/components'),
       '@constants': path.resolve(__dirname, './src/constants'),
+      '@features': path.resolve(__dirname, './src/features'),
+      '@models': path.resolve(__dirname, './src/models'),
+      '@redux': path.resolve(__dirname, './src/redux'),
+
       //'@services': path.resolve(__dirname, './src/services'),
       '@': path.resolve(__dirname, './src'),
     },
