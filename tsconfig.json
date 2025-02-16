@@ -12,12 +12,13 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
-      "@common/*": ["src/common/*"],
-      "@components/*": ["src/components/*"],
-      "@features/*": ["src/features/*"],
       "@assets/*": ["src/assets/*"],
-      "@redux/*": ["src/app/redux/*"],
+      "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],
+      "@features/*": ["src/features/*"],
+      "@models/*": ["src/models/*"],
+      "@redux/*": ["src/redux/*"],
+
       //"@services/*": ["src/services/*"],
       "@/*": ["src/*"]
     }

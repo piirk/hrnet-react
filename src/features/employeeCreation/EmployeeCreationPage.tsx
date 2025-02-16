@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { states } from '@constants/states'
-import Layout from '@/components/Layout'
+import Layout from '@components/Layout'
 import {
   Typography,
   TextField,
