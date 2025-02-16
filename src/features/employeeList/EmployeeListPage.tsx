@@ -50,7 +50,20 @@ const EmployeeListPage = () => {
         Current Employees
       </Typography>
 
-      <DataTable data={employees} columns={columns} />
+      <DataTable
+        data={employees}
+        columns={columns}
+        sx={{
+          container: { padding: '16px', borderRadius: '8px' },
+          search: { marginBottom: '20px' },
+          table: { border: '1px solid black' },
+          header: { backgroundColor: 'lightblue', fontWeight: 'bold' },
+          body: { backgroundColor: 'lightgrey' },
+          row: { '&:nth-of-type(odd)': { backgroundColor: '#f9f9f9' } },
+          cell: { padding: '10px' },
+          pagination: { marginTop: '20px' },
+        }}
+      />
     </Layout>
   )
 }
