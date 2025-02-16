@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["dom", "esnext"],
-    "allowJs": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "jsx": "react-jsx",
     "strict": true,
-    "module": "esnext",
-    "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
@@ -18,11 +16,9 @@
       "@features/*": ["src/features/*"],
       "@models/*": ["src/models/*"],
       "@redux/*": ["src/redux/*"],
-
-      //"@services/*": ["src/services/*"],
       "@/*": ["src/*"]
     }
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "vite-env.d.ts"],
+  "include": ["src/**/*", "vite-env.d.ts"],
   "exclude": ["node_modules"]
 }
