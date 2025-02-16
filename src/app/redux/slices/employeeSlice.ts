@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fetchEmployees } from '@redux/actions/employeeActions'
-import { Employee } from '@common/models/Employee'
+import { Employee } from '@/models/Employee'
 
 interface EmployeeState {
   employees: Employee[]

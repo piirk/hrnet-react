@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Employee } from '@common/models/Employee'
+import { Employee } from '@/models/Employee'
 
 export const fetchEmployees = createAsyncThunk(
   'employee/fetchEmployees',
