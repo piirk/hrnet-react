@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Layout from '@common/components/Layout'
 import { fetchEmployees } from '@redux/actions/employeeActions'
@@ -9,12 +9,6 @@ import { DataTable } from 'react-datatable-library'
 import { states } from '@constants/states'
 
 const EmployeeListPage = () => {
-  // dev
-  const [useMUI, setUseMUI] = useState(true)
-  const handleToggleMUI = () => {
-    setUseMUI((prev) => !prev)
-  }
-
   const dispatch: AppDispatch = useDispatch()
   const employees: Employee[] = useSelector(
     (state: RootState) => state.employee.employees,
@@ -56,12 +50,7 @@ const EmployeeListPage = () => {
         Current Employees
       </Typography>
 
-      {/* dev */}
-      <button onClick={handleToggleMUI}>
-        {useMUI ? 'Switch to Non-MUI' : 'Switch to MUI'}
-      </button>
-
-      <DataTable data={employees} columns={columns} useMUI={useMUI} />
+      <DataTable data={employees} columns={columns} />
     </Layout>
   )
 }
