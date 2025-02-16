@@ -155,7 +155,6 @@ const EmployeeCreationPage = () => {
           </FormControl>
 
           <FormControl fullWidth error={!!errors.state}>
-            <InputLabel>State</InputLabel>
             <Select
               {...register('state', { required: 'State is required' })}
               label="State"
