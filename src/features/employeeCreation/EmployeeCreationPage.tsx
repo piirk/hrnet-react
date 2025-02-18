@@ -64,7 +64,9 @@ const EmployeeCreationPage = () => {
       </Typography>
       <Box
         component="form"
-        sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
+        sx={{
+          '& .MuiTextField-root, & .MuiSelect-root': { m: 1, width: '25ch' },
+        }}
         onSubmit={handleSubmit(onSubmit)}
         noValidate
         autoComplete="off"
