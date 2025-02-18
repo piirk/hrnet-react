@@ -30,9 +30,15 @@ const EmployeeCreationPage = () => {
   } = useForm()
 
   const [state, setState] = useState('')
+  const [department, setDepartment] = useState('')
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleStateChange = (event: SelectChangeEvent) => {
     setState(event.target.value as string)
+  }
+
+  const handleDepartmentChange = (event: SelectChangeEvent) => {
+    console.log(event.target)
+    setDepartment(event.target.value as string)
   }
 
   const onSubmit = (data: any) => {
@@ -165,7 +171,7 @@ const EmployeeCreationPage = () => {
               {...register('state', { required: 'State is required' })}
               label="State"
               value={state}
-              onChange={handleChange}
+              onChange={handleStateChange}
             >
               {Object.entries(states).map(([abbreviation, name]) => (
                 <MenuItem key={abbreviation} value={abbreviation}>
@@ -191,15 +197,23 @@ const EmployeeCreationPage = () => {
           </FormControl>
         </Box>
 
-        <FormControl fullWidth>
+        <FormControl fullWidth error={!!errors.department}>
           <InputLabel>Department</InputLabel>
-          <Select {...register('department')} label="Department">
-            <MenuItem>Sales</MenuItem>
-            <MenuItem>Marketing</MenuItem>
-            <MenuItem>Engineering</MenuItem>
-            <MenuItem>Human Resources</MenuItem>
-            <MenuItem>Legal</MenuItem>
+          <Select
+            {...register('department', { required: 'Department is required' })}
+            label="Department"
+            value={department}
+            onChange={handleDepartmentChange}
+          >
+            <MenuItem value={'Sales'}>Sales</MenuItem>
+            <MenuItem value={'Marketing'}>Marketing</MenuItem>
+            <MenuItem value={'Engineering'}>Engineering</MenuItem>
+            <MenuItem value={'Human Resources'}>Human Resources</MenuItem>
+            <MenuItem value={'Legal'}>Legal</MenuItem>
           </Select>
+          <FormHelperText>
+            {errors.departement?.message?.toString() || ''}
+          </FormHelperText>
         </FormControl>
 
         <Button
