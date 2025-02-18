@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useForm, Controller } from 'react-hook-form'
+import { addEmployee } from '@redux/actions/employeeActions'
+import { AppDispatch } from '@redux/store'
 import { states } from '@constants/states'
 import Layout from '@components/Layout'
 import {
@@ -18,6 +21,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs from 'dayjs'
 
 const EmployeeCreationPage = () => {
+  const dispatch: AppDispatch = useDispatch()
   const {
     register,
     handleSubmit,
@@ -32,9 +36,11 @@ const EmployeeCreationPage = () => {
   }
 
   const onSubmit = (data: any) => {
-    const employees = JSON.parse(localStorage.getItem('employees') || '[]')
-    employees.push(data)
-    localStorage.setItem('employees', JSON.stringify(employees))
+    const { dateOfBirth, startDate } = data
+    data.dateOfBirth = dateOfBirth.toISOString()
+    data.startDate = startDate.toISOString()
+
+    dispatch(addEmployee(data))
 
     const confirmation = document.getElementById(
       'confirmation',
@@ -206,9 +212,24 @@ const EmployeeCreationPage = () => {
         </Button>
       </Box>
 
-      <div id="confirmation" className="modal">
-        Employee Created!
-      </div>
+      <Box
+        id="confirmation"
+        sx={{
+          display: 'none',
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          bgcolor: 'background.paper',
+          boxShadow: 24,
+          p: 4,
+          zIndex: 1300,
+        }}
+      >
+        <Typography variant="h6" component="h2">
+          Employee Created!
+        </Typography>
+      </Box>
     </Layout>
   )
 }

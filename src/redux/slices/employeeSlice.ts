@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { fetchEmployees } from '@redux/actions/employeeActions'
+import { fetchEmployees, addEmployee } from '@redux/actions/employeeActions'
 import { Employee } from '@models/Employee'
 
 interface EmployeeState {
@@ -17,11 +17,7 @@ const initialState: EmployeeState = {
 const employeeSlice = createSlice({
   name: 'employee',
   initialState,
-  reducers: {
-    addEmployee(state, action: PayloadAction<Employee>) {
-      state.employees.push(action.payload)
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchEmployees.pending, (state) => {
       state.loading = true
@@ -34,8 +30,16 @@ const employeeSlice = createSlice({
       state.loading = false
       state.error = action.error.message
     })
+    builder.addCase(
+      addEmployee.fulfilled,
+      (state, action: PayloadAction<Employee>) => {
+        state.employees.push(action.payload)
+      },
+    )
+    builder.addCase(addEmployee.rejected, (state, action) => {
+      state.error = action.payload as string
+    })
   },
 })
 
-export const { addEmployee } = employeeSlice.actions
 export default employeeSlice.reducer
