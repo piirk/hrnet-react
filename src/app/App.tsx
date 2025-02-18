@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@redux/store'
-import Routes from './routes'
+import Routes from '../routes'
 import { CssBaseline } from '@mui/material'
 import './App.scss'
 
