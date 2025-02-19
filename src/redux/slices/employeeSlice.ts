@@ -30,13 +30,18 @@ const employeeSlice = createSlice({
       state.loading = false
       state.error = action.error.message
     })
+    builder.addCase(addEmployee.pending, (state) => {
+      state.loading = true
+    })
     builder.addCase(
       addEmployee.fulfilled,
       (state, action: PayloadAction<Employee>) => {
+        state.loading = false
         state.employees.push(action.payload)
       },
     )
     builder.addCase(addEmployee.rejected, (state, action) => {
+      state.loading = false
       state.error = action.payload as string
     })
   },
