@@ -12,7 +12,7 @@ export const fetchEmployees = createAsyncThunk(
 
 export const addEmployee = createAsyncThunk(
   'employee/addEmployee',
-  async (employee: Employee, { rejectWithValue }) => {
+  async (employee: Omit<Employee, 'id'>, { rejectWithValue }) => {
     try {
       const response = await fetch('http://localhost:5000/employees', {
         method: 'POST',

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { addEmployee } from '@redux/actions/employeeActions'
 import { AppDispatch } from '@redux/store'
 import { states } from '@constants/states'
@@ -20,6 +20,19 @@ import {
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs from 'dayjs'
+import { Employee } from '@models/Employee'
+
+interface EmployeeFormInput {
+  firstName: string
+  lastName: string
+  dateOfBirth: Date
+  startDate: Date
+  department: string
+  street: string
+  city: string
+  state: string
+  zipCode: string
+}
 
 const EmployeeCreationPage = () => {
   const dispatch: AppDispatch = useDispatch()
@@ -28,7 +41,7 @@ const EmployeeCreationPage = () => {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm()
+  } = useForm<EmployeeFormInput>()
 
   const [state, setState] = useState('')
   const [department, setDepartment] = useState('')
@@ -42,12 +55,14 @@ const EmployeeCreationPage = () => {
     setDepartment(event.target.value as string)
   }
 
-  const onSubmit = (data: any) => {
-    const { dateOfBirth, startDate } = data
-    data.dateOfBirth = dateOfBirth.toISOString()
-    data.startDate = startDate.toISOString()
+  const onSubmit: SubmitHandler<EmployeeFormInput> = (data) => {
+    const formattedData: Omit<Employee, 'id'> = {
+      ...data,
+      dateOfBirth: data.dateOfBirth.toISOString(),
+      startDate: data.startDate.toISOString(),
+    }
 
-    dispatch(addEmployee(data))
+    dispatch(addEmployee(formattedData))
 
     const confirmation = document.getElementById(
       'confirmation',
@@ -166,7 +181,7 @@ const EmployeeCreationPage = () => {
             <MenuItem value={'Legal'}>Legal</MenuItem>
           </Select>
           <FormHelperText>
-            {errors.departement?.message?.toString() || ''}
+            {errors.department?.message?.toString() || ''}
           </FormHelperText>
         </FormControl>
 
