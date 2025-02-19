@@ -78,6 +78,8 @@ const EmployeeCreationPage = () => {
       <Typography variant="h1" sx={{ fontSize: '3rem' }}>
         Create Employee
       </Typography>
+
+      {/* Employee Form */}
       <Box
         component="form"
         sx={{
@@ -86,12 +88,17 @@ const EmployeeCreationPage = () => {
           gap: '0.8rem',
           margin: 'auto',
           marginTop: '20px',
-          width: '28ch',
+          width: {
+            xs: '28ch',
+            sm: '40ch',
+            md: '50ch',
+          },
         }}
         onSubmit={handleSubmit(onSubmit)}
         noValidate
         autoComplete="off"
       >
+        <Divider>Personal Information</Divider>
         <FormControl fullWidth error={!!errors.firstName}>
           <TextField
             label="First Name"
@@ -139,6 +146,7 @@ const EmployeeCreationPage = () => {
           />
         </FormControl>
 
+        <Divider>Employment</Divider>
         <FormControl fullWidth error={!!errors.startDate}>
           <Controller
             name="startDate"
@@ -252,6 +260,7 @@ const EmployeeCreationPage = () => {
         </Button>
       </Box>
 
+      {/* Confirmation Dialog */}
       <Box
         id="confirmation"
         sx={{
