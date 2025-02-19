@@ -51,7 +51,6 @@ const EmployeeCreationPage = () => {
   }
 
   const handleDepartmentChange = (event: SelectChangeEvent) => {
-    console.log(event.target)
     setDepartment(event.target.value as string)
   }
 
