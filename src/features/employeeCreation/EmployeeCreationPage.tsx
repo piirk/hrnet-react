@@ -16,6 +16,7 @@ import {
   FormHelperText,
   Box,
   SelectChangeEvent,
+  Divider,
 } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs from 'dayjs'
@@ -65,7 +66,12 @@ const EmployeeCreationPage = () => {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root, & .MuiSelect-root': { m: 1, width: '25ch' },
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.8rem',
+          margin: 'auto',
+          marginTop: '20px',
+          width: '28ch',
         }}
         onSubmit={handleSubmit(onSubmit)}
         noValidate
@@ -143,69 +149,15 @@ const EmployeeCreationPage = () => {
           />
         </FormControl>
 
-        <Box component="fieldset">
-          <legend>Address</legend>
-
-          <FormControl fullWidth error={!!errors.street}>
-            <TextField
-              label="Street"
-              variant="outlined"
-              fullWidth
-              {...register('street', { required: 'Street is required' })}
-              error={!!errors.street}
-              helperText={errors.street?.message?.toString() || ''}
-            />
-          </FormControl>
-
-          <FormControl fullWidth error={!!errors.city}>
-            <TextField
-              label="City"
-              variant="outlined"
-              fullWidth
-              {...register('city', { required: 'City is required' })}
-              error={!!errors.city}
-              helperText={errors.city?.message?.toString() || ''}
-            />
-          </FormControl>
-
-          <FormControl fullWidth error={!!errors.state}>
-            <Select
-              {...register('state', { required: 'State is required' })}
-              label="State"
-              value={state}
-              onChange={handleStateChange}
-            >
-              {Object.entries(states).map(([abbreviation, name]) => (
-                <MenuItem key={abbreviation} value={abbreviation}>
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-            <FormHelperText>
-              {errors.state?.message?.toString() || ''}
-            </FormHelperText>
-          </FormControl>
-
-          <FormControl fullWidth error={!!errors.zipCode}>
-            <TextField
-              label="Zip Code"
-              variant="outlined"
-              type="number"
-              fullWidth
-              {...register('zipCode', { required: 'Zip code is required' })}
-              error={!!errors.zipCode}
-              helperText={errors.zipCode?.message?.toString() || ''}
-            />
-          </FormControl>
-        </Box>
-
-        <FormControl fullWidth error={!!errors.department}>
-          <InputLabel>Department</InputLabel>
+        <FormControl error={!!errors.department}>
+          <InputLabel id="department-label">Department</InputLabel>
           <Select
+            labelId="department-label"
             {...register('department', { required: 'Department is required' })}
             label="Department"
             value={department}
             onChange={handleDepartmentChange}
+            fullWidth
           >
             <MenuItem value={'Sales'}>Sales</MenuItem>
             <MenuItem value={'Marketing'}>Marketing</MenuItem>
@@ -216,6 +168,63 @@ const EmployeeCreationPage = () => {
           <FormHelperText>
             {errors.departement?.message?.toString() || ''}
           </FormHelperText>
+        </FormControl>
+
+        <Divider>Address</Divider>
+
+        <FormControl fullWidth error={!!errors.street}>
+          <TextField
+            label="Street"
+            variant="outlined"
+            fullWidth
+            {...register('street', { required: 'Street is required' })}
+            error={!!errors.street}
+            helperText={errors.street?.message?.toString() || ''}
+          />
+        </FormControl>
+
+        <FormControl fullWidth error={!!errors.city}>
+          <TextField
+            label="City"
+            variant="outlined"
+            fullWidth
+            {...register('city', { required: 'City is required' })}
+            error={!!errors.city}
+            helperText={errors.city?.message?.toString() || ''}
+          />
+        </FormControl>
+
+        <FormControl error={!!errors.state}>
+          <InputLabel id="state-label">State</InputLabel>
+          <Select
+            labelId="state-label"
+            {...register('state', { required: 'State is required' })}
+            label="State"
+            value={state}
+            onChange={handleStateChange}
+            fullWidth
+          >
+            {Object.entries(states).map(([abbreviation, name]) => (
+              <MenuItem key={abbreviation} value={abbreviation}>
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+          <FormHelperText>
+            {errors.state?.message?.toString() || ''}
+          </FormHelperText>
+        </FormControl>
+
+        <FormControl fullWidth error={!!errors.zipCode}>
+          <TextField
+            label="Zip Code"
+            variant="outlined"
+            type="number"
+            fullWidth
+            {...register('zipCode', { required: 'Zip code is required' })}
+            error={!!errors.zipCode}
+            helperText={errors.zipCode?.message?.toString() || ''}
+          />
         </FormControl>
 
         <Button
