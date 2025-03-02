@@ -19,7 +19,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "dayjs": "^1.11.13",
     "react": "^18.3.1",
-    "react-datatable-library": "file:../react-datatable-library",
+    "react-datatable-library": "^1.0.5",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.2",
     "react-redux": "^9.2.0",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@types/node": "^22.13.5",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
@@ -38,6 +39,7 @@
     "globals": "^15.14.0",
     "json-server": "^1.0.0-beta.3",
     "prettier": "^3.4.2",
+    "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "^5.7.3",
     "vite": "^6.0.5"
   }

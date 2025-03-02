@@ -5,19 +5,17 @@ import { addEmployee } from '@redux/actions/employeeActions'
 import { AppDispatch } from '@redux/store'
 import { states } from '@constants/states'
 import Layout from '@components/Layout'
-import {
-  Typography,
-  TextField,
-  Button,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
-  FormHelperText,
-  Box,
-  SelectChangeEvent,
-  Divider,
-} from '@mui/material'
+import Typography from '@mui/material/Typography'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import MenuItem from '@mui/material/MenuItem'
+import Select from '@mui/material/Select'
+import InputLabel from '@mui/material/InputLabel'
+import FormControl from '@mui/material/FormControl'
+import FormHelperText from '@mui/material/FormHelperText'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
+import { SelectChangeEvent } from '@mui/material/Select'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs from 'dayjs'
 import { Employee } from '@models/Employee'
