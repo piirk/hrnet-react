@@ -4,7 +4,7 @@ import Layout from '@components/Layout'
 import { fetchEmployees } from '@redux/actions/employeeActions'
 import { RootState, AppDispatch } from '@redux/store'
 import { Employee } from '@models/Employee'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 import { DataTable } from 'react-datatable-library'
 import { states } from '@constants/states'
 
