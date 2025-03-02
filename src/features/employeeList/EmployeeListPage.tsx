@@ -1,12 +1,18 @@
-import { useEffect } from 'react'
+import { useEffect, Suspense, lazy } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Layout from '@components/Layout'
 import { fetchEmployees } from '@redux/actions/employeeActions'
 import { RootState, AppDispatch } from '@redux/store'
 import { Employee } from '@models/Employee'
 import Typography from '@mui/material/Typography'
-import { DataTable } from 'react-datatable-library'
+import CircularProgress from '@mui/material/CircularProgress'
 import { states } from '@constants/states'
+
+const DataTable = lazy(() =>
+  import('react-datatable-library').then((module) => ({
+    default: module.DataTable,
+  })),
+)
 
 const EmployeeListPage = () => {
   const dispatch: AppDispatch = useDispatch()
@@ -50,26 +56,32 @@ const EmployeeListPage = () => {
         Current Employees
       </Typography>
 
-      <DataTable
-        data={employees}
-        columns={columns}
-        sx={{
-          container: {
-            padding: '16px',
-            borderRadius: '8px',
-            boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-            mt: '20px',
-            minHeight: 650,
-          },
-          search: { marginBottom: '20px' },
-          table: { border: '1px solid black' },
-          header: { backgroundColor: 'lightblue' },
-          body: { backgroundColor: 'lightgrey' },
-          row: { '&:nth-of-type(odd)': { backgroundColor: '#f9f9f9' } },
-          cell: { padding: '10px' },
-          pagination: { marginTop: '20px' },
-        }}
-      />
+      <Suspense
+        fallback={
+          <CircularProgress sx={{ display: 'block', margin: 'auto' }} />
+        }
+      >
+        <DataTable
+          data={employees}
+          columns={columns}
+          sx={{
+            container: {
+              padding: '16px',
+              borderRadius: '8px',
+              boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
+              mt: '20px',
+              minHeight: 650,
+            },
+            search: { marginBottom: '20px' },
+            table: { border: '1px solid black' },
+            header: { backgroundColor: 'lightblue' },
+            body: { backgroundColor: 'lightgrey' },
+            row: { '&:nth-of-type(odd)': { backgroundColor: '#f9f9f9' } },
+            cell: { padding: '10px' },
+            pagination: { marginTop: '20px' },
+          }}
+        />
+      </Suspense>
     </Layout>
   )
 }
