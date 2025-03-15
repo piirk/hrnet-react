@@ -70,55 +70,34 @@ Open your browser and go to `http://localhost:3000`.
 
 ```text
 ├── public
-│   └── index.html
 ├── src
 │   ├── app
-│   │   └── App.tsx
 │   ├── assets
 │   ├── components
-│   │   ├── Footer.tsx
-│   │   ├── Header.tsx
-│   │   └── Layout.tsx
 │   ├── constants
-│   │   └── states.ts
 │   ├── features
-│   │   ├── employeeCreation
-│   │   │   └── EmployeeCreationPage.tsx
-│   │   └── employeeList
-│   │       └── EmployeeListPage.tsx
 │   ├── models
-│   │   └── Employee.ts
 │   ├── redux
-│   │   ├── actions
-│   │   │   └── employeeActions.ts
-│   │   ├── slices
-│   │   │   └── employeeSlice.ts
-│   │   └── store.ts
 │   ├── routes
-│   │   ├── index.tsx
-│   │   └── PageNotFound.tsx
 │   ├── types
-│   │   └── declarations.d.ts
 │   └── main.tsx
-├── .gitignore
-├── .prettierrc
-├── db.json
-├── eslint.config.js
-├── package.json
-├── README.md
-├── tsconfig.json
-└── vite.config.js
 ```
 
 ## Dependencies
 
-- React
-- Redux Toolkit
-- React Router DOM
-- Material-UI
-- Day.js
-- React Hook Form
-- JSON Server
+```json
+{
+  "dependencies": {
+    "react": ">=17.0.0",
+    "redux-toolkit": ">=1.5.0",
+    "react-router-dom": ">=5.2.0",
+    "material-ui": ">=4.11.0",
+    "dayjs": ">=1.10.0",
+    "react-hook-form": ">=6.0.0",
+    "json-server": ">=0.16.0"
+  }
+}
+```
 
 ## ESLint and Prettier Configuration
 
